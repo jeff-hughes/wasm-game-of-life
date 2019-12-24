@@ -24,7 +24,7 @@ const renderLoop = () => {
 
     drawGrid();
     drawCells();
-    requestAnimationFrame(renderLoop);
+    //requestAnimationFrame(renderLoop);
 };
 
 const drawGrid = () => {
@@ -76,4 +76,5 @@ const drawCells = () => {
 
 drawGrid();
 drawCells();
-requestAnimationFrame(renderLoop);
+//requestAnimationFrame(renderLoop);
+setInterval(renderLoop, 500);
