@@ -55,18 +55,10 @@ impl Universe {
         let width = 64;
         let height = 64;
 
-        // initialize board with a single "spaceship"
+        // randomize initial state
         let cells = (0..width * height)
-            .map(|i| {
-                if i == ((height / 2 - 1) * width) + (width / 2) ||
-                    i == ((height / 2 - 3) * width) + (width / 2) || 
-                    i == ((height / 2 - 4) * width) + (width / 2) + 1 || 
-                    i == ((height / 2 - 4) * width) + (width / 2) + 2 ||
-                    i == ((height / 2 - 4) * width) + (width / 2) + 3 ||
-                    i == ((height / 2 - 4) * width) + (width / 2) + 4 ||
-                    i == ((height / 2 - 3) * width) + (width / 2) + 4 ||
-                    i == ((height / 2 - 2) * width) + (width / 2) + 4 ||
-                    i == ((height / 2 - 1) * width) + (width / 2) + 3 {
+            .map(|_i| {
+                if js_sys::Math::random() < 0.5 {
                     Cell::Alive
                 } else {
                     Cell::Dead
