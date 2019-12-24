@@ -2,6 +2,7 @@ mod utils;
 
 use std::fmt;
 use wasm_bindgen::prelude::*;
+use js_sys;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -54,9 +55,18 @@ impl Universe {
         let width = 64;
         let height = 64;
 
+        // initialize board with a single "spaceship"
         let cells = (0..width * height)
             .map(|i| {
-                if i % 2 == 0 || i % 7 == 0 {
+                if i == ((height / 2 - 1) * width) + (width / 2) ||
+                    i == ((height / 2 - 3) * width) + (width / 2) || 
+                    i == ((height / 2 - 4) * width) + (width / 2) + 1 || 
+                    i == ((height / 2 - 4) * width) + (width / 2) + 2 ||
+                    i == ((height / 2 - 4) * width) + (width / 2) + 3 ||
+                    i == ((height / 2 - 4) * width) + (width / 2) + 4 ||
+                    i == ((height / 2 - 3) * width) + (width / 2) + 4 ||
+                    i == ((height / 2 - 2) * width) + (width / 2) + 4 ||
+                    i == ((height / 2 - 1) * width) + (width / 2) + 3 {
                     Cell::Alive
                 } else {
                     Cell::Dead
